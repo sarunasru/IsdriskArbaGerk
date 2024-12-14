@@ -8,11 +8,18 @@ class LevelSelectionPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white, // Set the background to white
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple[700],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.grey[100],
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Pasirinkite Sunkumo Lygį',
-          style: TextStyle(fontFamily: 'Poppins'),
+          style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
         ),
-        backgroundColor: Colors.deepPurple[700],
         elevation: 5.0,
       ),
       body: Stack(
@@ -54,7 +61,7 @@ class LevelSelectionPage extends StatelessWidget {
 
   Widget _buildHeaderText() {
     return Text(
-      'Pasirinkite savo sunkumo lygį:',
+      'Pasirinkite norimą sunkumo lygį:',
       textAlign: TextAlign.center,
       style: TextStyle(
         fontFamily: 'Poppins',
@@ -96,7 +103,7 @@ class LevelSelectionPage extends StatelessWidget {
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
               fontSize: 18.0,
-              color: Colors.white, // Ensure white text
+              color: Colors.grey[100], // Ensure grey text
             ),
           ),
         ),

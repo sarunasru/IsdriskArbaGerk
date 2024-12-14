@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         ),
         title: Text(
           'Žaidimo Puslapis',
-          style: TextStyle(fontFamily: 'Poppins'),
+          style: TextStyle(fontFamily: 'Poppins', color: Colors.white,),
         ),
       ),
       body: SafeArea(

@@ -4,9 +4,9 @@ class QuizBrain {
   List<String> currentBank = [];
 
   final List<String> familyFriendlyBank = [
-    'What is your favorite color?',
-    'Sing a nursery rhyme.',
-    'Do a funny dance.',
+    'Klausimas 1',
+    'Klausimas 2',
+    'Klausimas 3',
   ];
 
   final List<String> advancedBank = [
