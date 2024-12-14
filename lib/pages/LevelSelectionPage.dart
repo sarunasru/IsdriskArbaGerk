@@ -125,7 +125,7 @@ class LevelSelectionPage extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.orange[600], // Distinct color for the custom button
+          color: Colors.orange[700], // Distinct color for the custom button
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -138,12 +138,12 @@ class LevelSelectionPage extends StatelessWidget {
         padding: EdgeInsets.all(20.0),
         child: Center(
           child: Text(
-            'Custom',
+            'Susikurk pats',
             style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
               fontSize: 18.0,
-              color: Colors.white, // Ensure white text
+              color: Colors.grey[100], // Ensure grey text
             ),
           ),
         ),

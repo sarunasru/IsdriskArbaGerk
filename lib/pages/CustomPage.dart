@@ -7,8 +7,8 @@ class CustomPage extends StatefulWidget {
 }
 
 class _CustomPageState extends State<CustomPage> {
-  final List<String> actualQuestions = []; // Stores the real question text
-  final List<String> questionPlaceholders = []; // Stores placeholders
+  final List<String> actualQuestions = [];
+  final List<String> questionPlaceholders = [];
   final TextEditingController playerController = TextEditingController();
   final TextEditingController questionController = TextEditingController();
 
@@ -16,11 +16,23 @@ class _CustomPageState extends State<CustomPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Custom Questions', style: TextStyle(fontFamily: 'Poppins')),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.grey[100],
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          'Susikurk Pats',
+          style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
+        ),
         backgroundColor: Colors.deepPurple[700],
       ),
+      resizeToAvoidBottomInset: true, // Adjust layout for keyboard
       body: Column(
         children: [
+          // Scrollable question list
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -47,6 +59,7 @@ class _CustomPageState extends State<CustomPage> {
               ),
             ),
           ),
+          // Input fields and buttons
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
@@ -61,30 +74,22 @@ class _CustomPageState extends State<CustomPage> {
             ),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: playerController,
-                        decoration: InputDecoration(
-                          labelText: 'Player Name',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: TextField(
-                        controller: questionController,
-                        decoration: InputDecoration(
-                          labelText: 'Question',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                  ],
+                TextField(
+                  controller: playerController,
+                  decoration: InputDecoration(
+                    labelText: 'Žaidėjo vardas',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
                 SizedBox(height: 10),
+                TextField(
+                  controller: questionController,
+                  decoration: InputDecoration(
+                    labelText: 'Užduotis',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 20),
                 Row(
                   children: [
                     Expanded(
@@ -93,11 +98,10 @@ class _CustomPageState extends State<CustomPage> {
                           if (playerController.text.isNotEmpty &&
                               questionController.text.isNotEmpty) {
                             setState(() {
-                              String questionText = questionController.text;
-                              actualQuestions.add(questionText); // Add the real question
+                              actualQuestions.add(questionController.text);
                               questionPlaceholders.add(
-                                "${playerController.text} Question ${questionPlaceholders.length + 1}",
-                              ); // Add placeholder
+                                "${playerController.text} | Užduotis ${questionPlaceholders.length + 1}",
+                              );
                             });
                             playerController.clear();
                             questionController.clear();
@@ -105,8 +109,12 @@ class _CustomPageState extends State<CustomPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.deepPurple[700],
+                          minimumSize: Size(double.infinity, 50),
                         ),
-                        child: Text('Add Question'),
+                        child: Text(
+                          'Pridėti užduotį',
+                          style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -119,16 +127,20 @@ class _CustomPageState extends State<CustomPage> {
                               MaterialPageRoute(
                                 builder: (context) => HomePage(
                                   level: 'custom',
-                                  customQuestions: actualQuestions, // Pass actual questions
+                                  customQuestions: actualQuestions,
                                 ),
                               ),
                             );
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.orange[600],
+                          backgroundColor: Colors.orange[700],
+                          minimumSize: Size(double.infinity, 50),
                         ),
-                        child: Text('Start Game'),
+                        child: Text(
+                          'Pradėti žaidimą',
+                          style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
+                        ),
                       ),
                     ),
                   ],
@@ -143,8 +155,8 @@ class _CustomPageState extends State<CustomPage> {
 
   void _resetQuestionPlaceholders() {
     for (int i = 0; i < questionPlaceholders.length; i++) {
-      String playerName = questionPlaceholders[i].split(' Question')[0];
-      questionPlaceholders[i] = "$playerName Question ${i + 1}";
+      String playerName = questionPlaceholders[i].split('|')[0].trim();
+      questionPlaceholders[i] = "$playerName | Užduotis ${i + 1}";
     }
   }
 

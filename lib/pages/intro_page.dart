@@ -110,7 +110,8 @@ class IntroPage extends StatelessWidget {
       title: 'Taisyklės',
       desc: 'Atėjus žaidėjo eilei atvaizduojama užduotis, kurią privalo įvygdyti, šios neatlikus žaidėjas privalo išgerti.\n\n'
           'Užduotyje gali būti pateikti keli pasirinkimai iš kurių žaidėjas privalo pasirinkti vieną.\n\n'
-          'UŽDUOTIS VISIEMS - tai užduotis, kurią privalo atlikti visi žaidėjai, šios neatlikus išgeria visi žaidėjai.',
+          'UŽDUOTIS VISIEMS - tai užduotis, kurią privalo atlikti visi žaidėjai, šios neatlikus išgeria visi žaidėjai.\n\n'
+      'Susikurk pats - tai galimybė anonimiškai pridėti savo sugalvotas užduotis. Užduotys bus išmaišytos atsitiktine tvarka, todėl niekas nesužinos, kas kokią užduotį sukūrė.',
       style: AlertStyle(
         isOverlayTapDismiss: false,
         titleStyle: TextStyle(
