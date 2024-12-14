@@ -7,7 +7,9 @@ import 'intro_page.dart';
 QuizBrain quizBrain = QuizBrain();
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String level;
+
+  const HomePage({required this.level, super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,9 +17,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    quizBrain.setLevel(widget.level); // Set the question bank based on the level
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple[700],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          'Žaidimo Puslapis',
+          style: TextStyle(fontFamily: 'Poppins'),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -27,6 +49,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
 
 class Questions extends StatefulWidget {
   @override
@@ -101,6 +124,16 @@ class _QuestionsState extends State<Questions> {
                             color: Colors.deepPurple[700],
                           ),
                         ],
+                        closeFunction: () {
+                          // Override the "X" button to also navigate to the IntroPage
+                          setState(() {
+                            quizBrain.reset();
+                          });
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => IntroPage()),
+                          );
+                        },
                       ).show();
                     }
 
