@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'home_page.dart';
+import 'CustomPage.dart'; // Import the new CustomPage
 
 class LevelSelectionPage extends StatelessWidget {
   @override
@@ -42,14 +43,16 @@ class LevelSelectionPage extends StatelessWidget {
                 children: [
                   _buildHeaderText(),
                   SizedBox(height: 30.0),
-                  _buildLevelButton(context, 'Apšilimas', 'family',
-                      Colors.deepPurple[700]!),
+                  _buildLevelButton(
+                      context, 'Apšilimas', 'family', Colors.deepPurple[700]!),
                   SizedBox(height: 20.0),
                   _buildLevelButton(
                       context, 'Pažengusiems', 'advanced', Colors.deepPurple[700]!),
                   SizedBox(height: 20.0),
-                  _buildLevelButton(context, '18+', 'eighteenPlus',
-                      Colors.grey[900]!),
+                  _buildLevelButton(
+                      context, '18+', 'eighteenPlus', Colors.grey[900]!),
+                  SizedBox(height: 20.0),
+                  _buildCustomButton(context), // Add the custom button
                 ],
               ),
             ),
@@ -104,6 +107,43 @@ class LevelSelectionPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 18.0,
               color: Colors.grey[100], // Ensure grey text
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCustomButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CustomPage()), // Navigate to CustomPage
+        );
+      },
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.orange[600], // Distinct color for the custom button
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        padding: EdgeInsets.all(20.0),
+        child: Center(
+          child: Text(
+            'Custom',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+              color: Colors.white, // Ensure white text
             ),
           ),
         ),

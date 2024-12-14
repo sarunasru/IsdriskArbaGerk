@@ -200,6 +200,7 @@ class QuizBrain {
   ];
 
 
+  /// Sets the question bank based on the selected level
   void setLevel(String level) {
     switch (level) {
       case 'family':
@@ -218,29 +219,41 @@ class QuizBrain {
     questionsNum = 0;
   }
 
+  /// Sets custom questions
+  void setCustomQuestions(List<String> customQuestions) {
+    currentBank = customQuestions
+        .map((text) => {'text': text, 'image': null}) // Convert to map with null image
+        .toList();
+    currentBank.shuffle(); // Shuffle custom questions
+    questionsNum = 0;
+  }
 
+  /// Moves to the next question
   void nextQuestion() {
     if (!isFinished()) {
       questionsNum++;
     }
   }
 
+  /// Moves to the previous question
   void previousQuestion() {
     if (questionsNum > 0) {
       questionsNum--;
     }
   }
 
+  /// Resets the quiz and shuffles questions
   void reset() {
     questionsNum = 0;
     currentBank.shuffle();
   }
 
+  /// Checks if the quiz has finished
   bool isFinished() {
     return questionsNum >= currentBank.length;
   }
 
-  /// Method to retrieve the current question
+  /// Retrieves the current question
   Map<String, String?> getCurrentQuestion() {
     if (isFinished()) {
       return {'text': '', 'image': null}; // Return empty when quiz is finished
@@ -249,3 +262,5 @@ class QuizBrain {
     }
   }
 }
+
+
