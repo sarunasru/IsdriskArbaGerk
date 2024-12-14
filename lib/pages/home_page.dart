@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'quiz_brain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'intro_page.dart';
@@ -37,7 +38,10 @@ class _HomePageState extends State<HomePage> {
         ),
         title: Text(
           'Žaidimo Puslapis',
-          style: TextStyle(fontFamily: 'Poppins', color: Colors.white,),
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: Colors.white,
+          ),
         ),
       ),
       body: SafeArea(
@@ -50,7 +54,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
 class Questions extends StatefulWidget {
   @override
   _QuestionsState createState() => _QuestionsState();
@@ -59,6 +62,7 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   @override
   Widget build(BuildContext context) {
+    final currentQuestion = quizBrain.getCurrentQuestion();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -68,14 +72,26 @@ class _QuestionsState extends State<Questions> {
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Center(
-              child: Text(
-                quizBrain.getQuestionText(),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.w500,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (currentQuestion['image'] != null) // Render SVG if available
+                    SvgPicture.asset(
+                      currentQuestion['image']!,
+                      color: Colors.grey[800],
+                      height: 200,
+                    ),
+                  SizedBox(height: 20),
+                  Text(
+                    currentQuestion['text']!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -90,7 +106,7 @@ class _QuestionsState extends State<Questions> {
                   setState(() {
                     quizBrain.nextQuestion();
 
-                    if (quizBrain.isFinished() == true) {
+                    if (quizBrain.isFinished()) {
                       Alert(
                         context: context,
                         title: 'Pabaiga!',
@@ -100,11 +116,11 @@ class _QuestionsState extends State<Questions> {
                           titleStyle: TextStyle(
                             fontSize: 20.0,
                             fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.bold,
                           ),
                           descStyle: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 14.0
+                            fontSize: 14.0,
                           ),
                         ),
                         buttons: [
@@ -119,13 +135,15 @@ class _QuestionsState extends State<Questions> {
                               });
 
                               Navigator.pop(context);
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => IntroPage()));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => IntroPage()),
+                              );
                             },
                             color: Colors.deepPurple[700],
                           ),
                         ],
                         closeFunction: () {
-                          // Override the "X" button to also navigate to the IntroPage
                           setState(() {
                             quizBrain.reset();
                           });
@@ -136,7 +154,6 @@ class _QuestionsState extends State<Questions> {
                         },
                       ).show();
                     }
-
                   });
                 },
                 child: Container(
@@ -198,5 +215,3 @@ class _QuestionsState extends State<Questions> {
     );
   }
 }
-
-
