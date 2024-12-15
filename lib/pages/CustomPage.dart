@@ -103,8 +103,7 @@ class _CustomPageState extends State<CustomPage> {
                                 "${playerController.text} | Užduotis ${questionPlaceholders.length + 1}",
                               );
                             });
-                            playerController.clear();
-                            questionController.clear();
+                            questionController.clear(); // Clear only the question field
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -113,7 +112,8 @@ class _CustomPageState extends State<CustomPage> {
                         ),
                         child: Text(
                           'Pridėti užduotį',
-                          style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
+                          style: TextStyle(
+                              fontFamily: 'Poppins', color: Colors.grey[100]),
                         ),
                       ),
                     ),
@@ -139,7 +139,8 @@ class _CustomPageState extends State<CustomPage> {
                         ),
                         child: Text(
                           'Pradėti žaidimą',
-                          style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
+                          style: TextStyle(
+                              fontFamily: 'Poppins', color: Colors.grey[100]),
                         ),
                       ),
                     ),

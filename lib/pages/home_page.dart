@@ -178,15 +178,18 @@ class _QuestionsState extends State<Questions> {
                   color: Colors.deepPurple[700],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                padding: EdgeInsets.all(25.0),
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
                 child: Center(
-                  child: Text(
-                    "Toliau",
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.grey[100],
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "Toliau",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.grey[100],
+                      ),
                     ),
                   ),
                 ),
@@ -208,15 +211,18 @@ class _QuestionsState extends State<Questions> {
                   color: Colors.grey[900],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                padding: EdgeInsets.all(25.0),
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
                 child: Center(
-                  child: Text(
-                    "Atgal",
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.grey[100],
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "Atgal",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.grey[100],
+                      ),
                     ),
                   ),
                 ),

@@ -18,7 +18,7 @@ class LevelSelectionPage extends StatelessWidget {
           },
         ),
         title: Text(
-          'Pasirinkite Sunkumo Lygį',
+          'Pasirinkite Sudėtingumo Lygį',
           style: TextStyle(fontFamily: 'Poppins', color: Colors.grey[100]),
         ),
         elevation: 5.0,
@@ -64,7 +64,7 @@ class LevelSelectionPage extends StatelessWidget {
 
   Widget _buildHeaderText() {
     return Text(
-      'Pasirinkite norimą sunkumo lygį:',
+      'Pasirinkite norimą sudėtingumo lygį:',
       textAlign: TextAlign.center,
       style: TextStyle(
         fontFamily: 'Poppins',
